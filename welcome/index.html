@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Key Changer is installed</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%2307787b'/%3E%3Cpath d='M18 12.4l-1.6 15.2M25.2 12.4l-1.6 15.2M13.2 17.4h14.8M12.2 22.8h14.8' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap">
+<style>
+  /* Key Changer tokens: slate neutrals + petrol teal; light and dark follow the system. */
+  :root {
+    --bg: oklch(99.2% 0.003 245);
+    --line: oklch(89.5% 0.01 245);
+    --ink: oklch(27% 0.02 255);
+    --ink-2: oklch(52% 0.018 252);
+    --accent: oklch(52% 0.087 198);
+    --on-accent: oklch(99.5% 0 0);
+    --callout: oklch(56% 0.215 27);
+    --on-callout: oklch(99.5% 0 0);
+    --shot-bg: oklch(92.5% 0.008 245);
+    --shadow: 0 1px 2px oklch(25% 0.02 250 / 0.08), 0 18px 44px oklch(25% 0.02 250 / 0.14);
+    --brand-tile: #07787b;
+    --brand-glyph: #ffffff;
+    --font: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: oklch(17% 0.01 250);
+      --line: oklch(34% 0.016 250);
+      --ink: oklch(92% 0.008 245);
+      --ink-2: oklch(68% 0.015 248);
+      --accent: oklch(79% 0.12 193);
+      --on-accent: oklch(22% 0.03 220);
+      --callout: oklch(62% 0.2 27);
+      --shot-bg: oklch(26% 0.014 250);
+      --shadow: 0 1px 2px oklch(0% 0 0 / 0.4), 0 18px 44px oklch(0% 0 0 / 0.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 17px/1.55 var(--font); font-synthesis: none; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .shell { max-width: 780px; margin: 0 auto; padding: 24px 24px 56px; }
+
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+  .brand svg { display: block; flex: 0 0 auto; }
+  .brand b { font-size: 15px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+
+  h1 { margin: 0; font-size: 33px; line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; text-wrap: balance; display: flex; align-items: center; gap: 12px; }
+  h1 svg { flex: 0 0 auto; }
+  .lede { margin: 10px 0 0; font-size: 18px; color: var(--ink-2); max-width: 56ch; text-wrap: pretty; }
+
+  .wsec { margin-top: 30px; }
+  .wsec h2 { margin: 0; font-size: 23px; line-height: 1.25; letter-spacing: -0.01em; }
+  .wlist { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+  .wlist li { display: flex; align-items: flex-start; gap: 12px; }
+  .wnum { flex: 0 0 auto; width: 26px; height: 26px; margin-top: 0.5px; border-radius: 50%; background: var(--callout); color: var(--on-callout); font: 700 14px/26px var(--font); text-align: center; }
+
+  /* Annotated pictures break out of the text column so the UI reads big. */
+  .shot {
+    position: relative; left: 50%; transform: translateX(-50%);
+    width: min(94vw, 882px); margin-top: 18px;
+    border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
+    background: var(--shot-bg); box-shadow: var(--shadow);
+  }
+  .shot img { display: block; width: 100%; height: auto; }
+
+  .cta-row { margin-top: 36px; display: flex; justify-content: center; }
+  .cta { display: inline-flex; align-items: center; gap: 10px; padding: 15px 28px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: 18px; text-decoration: none; }
+  .cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  footer { margin-top: 52px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-2); }
+  footer a { color: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="shell">
+    <div class="brand">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" style="fill: var(--brand-tile)"/><path d="M18 12.4l-1.6 15.2M25.2 12.4l-1.6 15.2M13.2 17.4h14.8M12.2 22.8h14.8" style="stroke: var(--brand-glyph)" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>
+      <b>Key Changer</b>
+    </div>
+
+    <h1><svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" style="fill: var(--accent)"/><path d="M7 12.4l3.3 3.3L17.2 8.8" style="stroke: var(--on-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Key Changer is installed</h1>
+    <p class="lede">Chrome hides new extensions behind the puzzle icon. Pin Key Changer so it's always one click away.</p>
+
+    <div class="shot">
+      <img src="step-1-2-pin.png" width="1760" height="580" alt="Chrome toolbar with the Extensions menu open: 1, click the puzzle icon; 2, click the pin next to Key Changer">
+    </div>
+
+    <section class="wsec">
+      <h2>Play a song and change its key</h2>
+      <ol class="wlist" start="3">
+        <li><span class="wnum" aria-hidden="true">3</span><span>Play a song on YouTube, then click the Key Changer icon.</span></li>
+        <li><span class="wnum" aria-hidden="true">4</span><span>Press + to raise the key by one semitone. The tempo stays the same.</span></li>
+      </ol>
+      <div class="shot">
+        <img src="step-3-4-popup.png" width="1760" height="1320" alt="A song playing on YouTube with the Key Changer popup open: 3, click the pinned Key Changer icon; 4, press the plus button">
+      </div>
+    </section>
+
+    <div class="cta-row"><a class="cta" href="https://www.youtube.com/" target="_blank" rel="noopener">Open YouTube <span aria-hidden="true">→</span></a></div>
+
+    <footer>
+      Questions or a bug? <a href="https://github.com/anastasialekasova-hub/key-changer-pages/issues" target="_blank" rel="noopener">Open an issue on GitHub</a>.
+      &nbsp;·&nbsp; <a href="https://anastasialekasova-hub.github.io/key-changer-privacy/" target="_blank" rel="noopener">Privacy</a>
+    </footer>
+  </div>
+</body>
+</html>

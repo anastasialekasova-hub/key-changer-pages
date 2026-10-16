@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help us improve Key Changer</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%2307787b'/%3E%3Cpath d='M18 12.4l-1.6 15.2M25.2 12.4l-1.6 15.2M13.2 17.4h14.8M12.2 22.8h14.8' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap">
+<style>
+  /* Key Changer tokens: slate neutrals + petrol teal; light and dark follow the system. */
+  :root {
+    --bg: oklch(99.2% 0.003 245);
+    --panel: oklch(96.6% 0.006 245);
+    --line: oklch(89.5% 0.01 245);
+    --line-2: oklch(78% 0.014 248);
+    --ink: oklch(27% 0.02 255);
+    --ink-2: oklch(52% 0.018 252);
+    --accent: oklch(52% 0.087 198);
+    --accent-ink: oklch(47% 0.076 200);
+    --on-accent: oklch(99.5% 0 0);
+    --accent-wash: oklch(52% 0.087 198 / 0.08);
+    --brand-tile: #07787b;
+    --brand-glyph: #ffffff;
+    --font: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: oklch(17% 0.01 250);
+      --panel: oklch(22% 0.012 250);
+      --line: oklch(34% 0.016 250);
+      --line-2: oklch(46% 0.018 250);
+      --ink: oklch(92% 0.008 245);
+      --ink-2: oklch(68% 0.015 248);
+      --accent: oklch(79% 0.12 193);
+      --accent-ink: oklch(79% 0.12 193);
+      --on-accent: oklch(22% 0.03 220);
+      --accent-wash: oklch(79% 0.12 193 / 0.1);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 17px/1.55 var(--font); font-synthesis: none; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .shell { max-width: 640px; margin: 0 auto; padding: 52px 24px 72px; }
+
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 34px; }
+  .brand svg { display: block; flex: 0 0 auto; }
+  .brand b { font-size: 15px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+
+  h1 { margin: 0; font-size: 31px; line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; text-wrap: balance; }
+  .lede { margin: 10px 0 0; font-size: 18px; color: var(--ink-2); max-width: 56ch; text-wrap: pretty; }
+
+  .q { display: block; margin-top: 30px; font-size: 13px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent-ink); }
+  .options { margin: 12px 0 0; display: grid; gap: 8px; min-width: 0; }
+  .opt {
+    position: relative; display: flex; align-items: center; gap: 12px;
+    border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
+    padding: 13px 16px; cursor: pointer; font-size: 16.5px; line-height: 1.35;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .opt:hover { border-color: var(--line-2); }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .dot { width: 20px; height: 20px; border-radius: 50%; flex: 0 0 auto; border: 2px solid var(--line-2); background: var(--bg); transition: border-color .15s ease, border-width .15s ease; }
+  .opt:has(input:checked) { border-color: var(--accent); background: var(--accent-wash); }
+  .opt:has(input:checked) .dot { border-color: var(--accent); border-width: 6px; }
+  .opt:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .field { display: block; width: 100%; margin-top: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--ink); padding: 13px 16px; font: inherit; font-size: 16px; }
+  textarea.field { min-height: 104px; resize: vertical; }
+  .field::placeholder { color: var(--ink-2); opacity: 1; }
+  .field:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+
+  .fhint { margin: 8px 0 0; font-size: 14px; color: var(--ink-2); }
+
+  .send { margin-top: 24px; padding: 14px 28px; border: 0; border-radius: 10px; background: var(--accent); color: var(--on-accent); font: inherit; font-size: 17px; font-weight: 700; cursor: pointer; }
+  .send:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .note { margin: 30px 0 0; font-size: 14px; color: var(--ink-2); max-width: 58ch; }
+  .note a { color: var(--ink); }
+
+  .thanks { display: none; }
+  .thanks h2 { margin: 0; font-size: 28px; letter-spacing: -0.015em; outline: none; }
+  .thanks p { margin: 10px 0 0; color: var(--ink-2); max-width: 52ch; }
+  body[data-sent="true"] .intro,
+  body[data-sent="true"] form { display: none; }
+  body[data-sent="true"] .thanks { display: block; }
+</style>
+</head>
+<body>
+  <div class="shell">
+    <div class="brand">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" style="fill: var(--brand-tile)"/><path d="M18 12.4l-1.6 15.2M25.2 12.4l-1.6 15.2M13.2 17.4h14.8M12.2 22.8h14.8" style="stroke: var(--brand-glyph)" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg>
+      <b>Key Changer</b>
+    </div>
+
+    <div class="intro">
+      <h1>What went wrong?</h1>
+      <p class="lede">Tell us what didn't work. We read every message.</p>
+    </div>
+
+    <form id="feedback">
+      <div class="q" id="q-reason">What's the main problem?</div>
+      <div class="options" role="radiogroup" aria-labelledby="q-reason">
+        <label class="opt"><input type="radio" name="reason" value="The audio gets distorted or sounds unnatural"><span class="dot"></span>The audio gets distorted or sounds unnatural</label>
+        <label class="opt"><input type="radio" name="reason" value="It doesn't work on a site I use"><span class="dot"></span>It doesn't work on a site I use</label>
+        <label class="opt"><input type="radio" name="reason" value="I have to click on the page to hear the new key"><span class="dot"></span>I have to click on the page to hear the new key</label>
+        <label class="opt"><input type="radio" name="reason" value="I need to change the speed too"><span class="dot"></span>I need to change the speed too</label>
+        <label class="opt"><input type="radio" name="reason" value="A feature I need is missing"><span class="dot"></span>A feature I need is missing</label>
+        <label class="opt"><input type="radio" name="reason" value="Something else"><span class="dot"></span>Something else</label>
+      </div>
+
+      <label class="q" for="details">Tell us more</label>
+      <textarea class="field" id="details" name="details" placeholder="For example, which site it was or what sounded wrong."></textarea>
+
+      <label class="q" for="email">Email, if you'd like a reply</label>
+      <input class="field" id="email" type="email" name="email" placeholder="you@example.com" autocomplete="email">
+      <p class="fhint">Optional. We'll only use it to reply to you.</p>
+
+      <button class="send" type="submit">Send feedback</button>
+    </form>
+
+    <div class="thanks">
+      <h2 tabindex="-1">Thank you. We read every message.</h2>
+      <p>If you left your email, we'll reply there.</p>
+    </div>
+
+    <p class="note">Prefer a conversation? <a href="https://github.com/anastasialekasova-hub/key-changer-pages/issues" target="_blank" rel="noopener">Open an issue on GitHub</a>.</p>
+  </div>
+
+<script>
+  // Answers go to a Google Form (and its linked Google Sheet).
+  // Fill these in from the form's pre-filled link. While FORM_ID is empty,
+  // "Send feedback" only shows the thank-you message and sends nothing.
+  var FORM_ID = '';
+  var ENTRY_REASON = '';
+  var ENTRY_DETAILS = '';
+  var ENTRY_EMAIL = '';
+
+  document.getElementById('feedback').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var reason = (document.querySelector('input[name="reason"]:checked') || {}).value || '';
+    var details = document.querySelector('textarea[name="details"]').value.trim();
+    var email = document.querySelector('input[name="email"]').value.trim();
+
+    if (FORM_ID && (reason || details || email)) {
+      var data = new FormData();
+      if (ENTRY_REASON && reason) data.append(ENTRY_REASON, reason);
+      if (ENTRY_DETAILS && details) data.append(ENTRY_DETAILS, details);
+      if (ENTRY_EMAIL && email) data.append(ENTRY_EMAIL, email);
+      fetch('https://docs.google.com/forms/d/e/' + FORM_ID + '/formResponse',
+        { method: 'POST', mode: 'no-cors', body: data }).catch(function () {});
+    }
+    document.body.dataset.sent = 'true';
+    document.querySelector('.thanks h2').focus();
+  });
+</script>
+</body>
+</html>
